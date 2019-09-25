@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Search from "./Search";
 import CompanyCard from "./CompanyCard";
-import JoblyApi from "./JoblyApi"
+import JoblyApi from "./JoblyApi";
+import uuid from 'uuid/v4';
 
 class CompanyList extends Component {
 
@@ -11,6 +12,7 @@ class CompanyList extends Component {
         companies: []
       })
       this.handleGet = this.handleGet.bind(this);
+      this.renderCompanies = this.renderCompanies.bind(this);
   }
 
   async componentDidMount(){
@@ -18,9 +20,6 @@ class CompanyList extends Component {
     this.setState({
         companies: companies
     })
-
-    console.log(this.state.companies);
-
   }
 
   async handleGet(){
@@ -30,6 +29,15 @@ class CompanyList extends Component {
     })
   }
 
+  renderCompanies() {
+    return (
+      <div className="justify-content-center">
+        {this.state.companies.map(company => (
+          <CompanyCard key={uuid()} name={company.name} desc={company.description} logo={company.logo} />
+        ))}
+      </div>
+    )
+  }
 
 
 
@@ -37,9 +45,10 @@ class CompanyList extends Component {
     
     return (
       <div>
-        This is the Company List
-        <CompanyCard />
         <Search />
+        <div>
+        {this.renderCompanies()}
+        </div>
       </div>
     );
   }
