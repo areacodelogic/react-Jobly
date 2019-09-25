@@ -2,53 +2,52 @@ import React, { Component } from "react";
 import Search from "./Search";
 import CompanyCard from "./CompanyCard";
 import JoblyApi from "./JoblyApi";
-import uuid from 'uuid/v4';
+import uuid from "uuid/v4";
 
 class CompanyList extends Component {
-
-  constructor(props){
-      super(props);
-      this.state = ({
-        companies: []
-      })
-      this.handleGet = this.handleGet.bind(this);
-      this.renderCompanies = this.renderCompanies.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      companies: []
+    };
+    this.handleGet = this.handleGet.bind(this);
+    this.renderCompanies = this.renderCompanies.bind(this);
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     let companies = await JoblyApi.getCompanies();
     this.setState({
-        companies: companies
-    })
+      companies: companies
+    });
   }
 
-  async handleGet(){
-    let companies = await JoblyApi.getCompanies()
+  async handleGet() {
+    let companies = await JoblyApi.getCompanies();
     this.setState({
-        companies: companies
-    })
+      companies: companies
+    });
   }
 
   renderCompanies() {
     return (
-      <div className="justify-content-center">
+      <div className='justify-content-center'>
         {this.state.companies.map(company => (
-          <CompanyCard key={uuid()} name={company.name} desc={company.description} logo={company.logo} />
+          <CompanyCard
+            key={uuid()}
+            name={company.name}
+            desc={company.description}
+            logo={company.logo}
+          />
         ))}
       </div>
-    )
+    );
   }
 
-
-
   render() {
-    
     return (
       <div>
         <Search />
-        <div>
-        {this.renderCompanies()}
-        </div>
+        <div>{this.renderCompanies()}</div>
       </div>
     );
   }
