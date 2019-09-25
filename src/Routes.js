@@ -10,25 +10,22 @@ import Login from "./Login";
 class Routes extends Component {
   render() {
     // +++ use for company filter+++
-    //     const dogListWithData = () => <DogList dogData={this.props.dogs} />;
 
-    //     const dogDetails = props => {
-    //       let name = props.match.params.name;
-    //       let currentDog = this.props.dogs.find(
-    //         dog => dog.name.toLowerCase() === name.toLowerCase()
-    //       );
-    //       return <DogDetails {...props} dog={currentDog} />;
-    //     };
+        // const companyDetails = props => {
+        //   let name = props.match.params.name;
+        //   let currentDog = this.props.find(
+        //     dog => dog.name.toLowerCase() === name.toLowerCase()
+        //   );
+        //   return <DogDetails {...props} dog={currentDog} />;
+        // };
 
+        // let companyName = props.match.params.name;
+          // let currentCompany = this.props.com
     return (
       <Switch>
         <Route exact path='/' render={() => <Home />} />
         <Route exact path='/companies/' render={() => <CompanyList />} />
-        <Route
-          exact
-          path='/companies/:name'
-          render={props => <Company {...props} />}
-        />
+        <Route exact path='/companies/:name' render={props => <Company {...props} />}/>
         <Route exact path='/jobs' render={() => <JobList />} />
         <Route exact path='/profile' render={() => <Profile />} />
         <Route exact path='/login' render={() => <Login />} />

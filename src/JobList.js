@@ -15,13 +15,13 @@ class JobList extends Component {
   }
 
   async componentDidMount() {
-    let jobs = await JoblyApi.getJobs();
+    let jobs = await JoblyApi.getAllJobs();
     this.setState({ jobs });
     console.log(jobs)
   }
 
   async handleGet() {
-    let jobs = await JoblyApi.getJobs();
+    let jobs = await JoblyApi.getAllJobs();
     this.setState({ jobs });
   }
 

@@ -16,16 +16,12 @@ class CompanyList extends Component {
 
   async componentDidMount() {
     let companies = await JoblyApi.getCompanies();
-    this.setState({
-      companies: companies
-    });
+    this.setState({ companies });
   }
 
   async handleGet() {
     let companies = await JoblyApi.getCompanies();
-    this.setState({
-      companies: companies
-    });
+    this.setState({ companies });
   }
 
   renderCompanies() {
@@ -37,17 +33,23 @@ class CompanyList extends Component {
             name={company.name}
             desc={company.description}
             logo={company.logo}
+            handle={company.handle}
           />
         ))}
       </div>
     );
   }
 
+  async searchCompanies(search) {
+    let jobs = await JoblyApi.getCompanies()
+    //Figure out how to send data to api request
+  }
+
   render() {
     return (
       <div>
         <Search />
-        <div>{this.renderCompanies()}</div>
+        <div className="container" >{this.renderCompanies()}</div>
       </div>
     );
   }
