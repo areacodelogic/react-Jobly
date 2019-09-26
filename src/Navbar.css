@@ -2,11 +2,18 @@ nav {
   background-color: slateblue;
   text-align: center;
   font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  align-self: center;
 }
 
 nav a {
   padding: 0.5em 0;
-  width: 12em;
+  width: 5em;
   display: inline-block;
   color: white;
   text-decoration: none;

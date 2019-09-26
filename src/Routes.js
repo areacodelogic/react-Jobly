@@ -9,18 +9,6 @@ import Login from "./Login";
 
 class Routes extends Component {
   render() {
-    // +++ use for company filter+++
-
-        // const companyDetails = props => {
-        //   let name = props.match.params.name;
-        //   let currentDog = this.props.find(
-        //     dog => dog.name.toLowerCase() === name.toLowerCase()
-        //   );
-        //   return <DogDetails {...props} dog={currentDog} />;
-        // };
-
-        // let companyName = props.match.params.name;
-          // let currentCompany = this.props.com
     return (
       <Switch>
         <Route exact path='/' render={() => <Home />} />

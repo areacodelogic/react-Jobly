@@ -12,16 +12,21 @@ class JobList extends Component {
     };
     this.handleGet = this.handleGet.bind(this);
     this.renderJobs = this.renderJobs.bind(this);
+    this.searchJobs = this.searchJobs.bind(this);
   }
 
   async componentDidMount() {
     let jobs = await JoblyApi.getAllJobs();
     this.setState({ jobs });
-    console.log(jobs)
   }
 
   async handleGet() {
     let jobs = await JoblyApi.getAllJobs();
+    this.setState({ jobs });
+  }
+
+  async searchJobs(search) {
+    let jobs = await JoblyApi.searchJobs(search);
     this.setState({ jobs });
   }
 
@@ -43,7 +48,7 @@ class JobList extends Component {
   render() {
     return (
       <div>
-        <Search />
+        <Search  search={this.searchJobs} name="jobs"/>
         <div className="container">{this.renderJobs()}</div>
       </div>
     );

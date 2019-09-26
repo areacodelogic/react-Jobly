@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import './Search.css';
+import FontAwesome from 'react-fontawesome';
 
 class Search extends Component {
   constructor(props) {
@@ -7,19 +9,27 @@ class Search extends Component {
       name: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(evt) {
+    this.setState({ [evt.target.name ]: evt.target.value});
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    // check in Company list: will call searchCompanies
+    this.props.search(this.state.name);
+    this.setState({ name: ""});
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input name="companyName" id ="companyName" placeholder="Search" value={this.state.name}/>
-          <input type="submit" value="Search">
+      <div className="search">
+        <form onSubmit={this.handleSubmit} className="form-inline active-pink-3 active-pink-4 position-relative" >
+          <input name="name" id ="companyName" className="form-control form-control-sm w-100" placeholder="Search" value={this.state.name} onChange={this.handleChange} />
+          <button className="btn position-absolute" type="submit" value="Search">
+            <FontAwesome name="glass" className="fa-search m-2" aria-hidden="true" />
+          </button>
         </form>
       </div>
     )

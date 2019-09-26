@@ -10,12 +10,14 @@ class Navbar extends Component {
     //   </NavLink>
     // ));
     return (
-      <nav>
-        <NavLink exact to='/'>Home</NavLink>
-        <NavLink exact to='/login'>Login</NavLink>
-        <NavLink exact to='/companies'>Company List</NavLink>
-        <NavLink exact to='/jobs'>Jobs</NavLink>
-        <NavLink exact to='/profile'>Profile</NavLink>
+      <nav className="nav">
+        <NavLink exact to='/' className="nav-item">Jobly</NavLink>
+        <ul>
+          <NavLink exact to='/login' className="nav-item">Login</NavLink>
+          <NavLink exact to='/companies' className="nav-item">Companies</NavLink>
+          <NavLink exact to='/jobs' className="nav-item">Jobs</NavLink>
+          <NavLink exact to='/profile' className="nav-item">Profile</NavLink>
+        </ul>
       </nav>
     );
   }

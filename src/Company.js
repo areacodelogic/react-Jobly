@@ -10,14 +10,14 @@ class Company extends Component {
       jobs: [],
       handle: ''
     }
-    this.renderJobs = this.renderJobs.bind(this)
+    this.renderJobs = this.renderJobs.bind(this);
   }
 
 async componentDidMount() {
-  const handle = this.props.match.params.name
-  const jobs = await JoblyApi.getAllJobs()
-  const companyJobs = jobs.filter(job => job.company_handle === handle)
-  this.setState({ handle, jobs: companyJobs })
+  const handle = this.props.match.params.name;
+  const jobs = await JoblyApi.getAllJobs();
+  const companyJobs = jobs.filter(job => job.company_handle === handle);
+  this.setState({ handle, jobs: companyJobs });
 }
 
 
@@ -32,13 +32,13 @@ renderJobs() {
         salary={job.salary}
         equity={job.equity}
         />
-      ))}
+      ))};
     </div>
   );
 }
 
   render() {
-    const { name, desc, logo } = this.props.location.state;
+    const { name, desc } = this.props.location.state;
 
     return (
       <Fragment >

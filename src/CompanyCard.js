@@ -10,7 +10,7 @@ class CompanyCard extends Component {
         <div className='col-sm-8'>
           <div className='card'>
             <div className='card-body'>
-            <Link exact to={{
+            <Link to={{
               pathname: `/companies/${this.props.handle}`,
               state: {
                 handle: this.props.handle,
@@ -20,6 +20,7 @@ class CompanyCard extends Component {
               }}}>
               <h5 className='card-title text-left'>{this.props.name}</h5>
               <p className='card-text text-left'>{this.props.desc}</p>
+              <img src={this.props.logo} alt="logo"/>
             </Link>
             </div>
           </div>

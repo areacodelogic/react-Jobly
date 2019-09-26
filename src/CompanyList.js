@@ -12,6 +12,7 @@ class CompanyList extends Component {
     };
     this.handleGet = this.handleGet.bind(this);
     this.renderCompanies = this.renderCompanies.bind(this);
+    this.searchCompanies = this.searchCompanies.bind(this);
   }
 
   async componentDidMount() {
@@ -32,7 +33,7 @@ class CompanyList extends Component {
             key={uuid()}
             name={company.name}
             desc={company.description}
-            logo={company.logo}
+            logo={company.logo_url}
             handle={company.handle}
           />
         ))}
@@ -41,14 +42,15 @@ class CompanyList extends Component {
   }
 
   async searchCompanies(search) {
-    let jobs = await JoblyApi.getCompanies()
-    //Figure out how to send data to api request
+    let companies = await JoblyApi.searchCompanies(search);
+    console.log(companies)
+    this.setState({ companies });
   }
 
   render() {
     return (
       <div>
-        <Search />
+        <Search search={this.searchCompanies} name="company" />
         <div className="container" >{this.renderCompanies()}</div>
       </div>
     );
