@@ -1,0 +1,46 @@
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-login {
+
+  margin: 30px;
+  position: relative;
+  width: 100%;
+
+}
+.container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+
+}
+
+.btn-group{
+    position: absolute;
+    top: -5px;
+    right: -14px;
+
+}
+
+label {
+  display: flex;
+
+}
+
+.login-btn input{
+  color: rgb(53, 53, 53);
+  text-decoration: none;
+  background-color: rgb(161, 154, 175);
+  color: white;
+}
+
+.login-btn:hover input {
+  color: black;
+  text-decoration: none;
+}
