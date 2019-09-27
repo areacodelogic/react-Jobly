@@ -13,6 +13,7 @@ class Navbar extends Component {
 
   handleLogin() {
     this.props.toggleLogin();
+    localStorage.setItem('token', '')
   }
 
   renderNav() {

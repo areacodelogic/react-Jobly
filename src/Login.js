@@ -129,8 +129,7 @@ class Login extends Component {
               <div className='form-group'>
                 <button
                   className='btn position-absolute'
-                  type='submit'
-                  value='Search'>
+                  type='submit'>
                   LOGIN
                   <FontAwesome
                     name='glass'

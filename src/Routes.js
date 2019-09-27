@@ -7,6 +7,8 @@ import JobList from "./JobList";
 import Profile from "./Profile";
 import Login from "./Login";
 import JoblyApi from "./JoblyApi";
+import PrivateRoute from "./PrivateRoute"
+
 
 class Routes extends Component {
   constructor(props) {
@@ -36,20 +38,46 @@ class Routes extends Component {
   }
 
   render() {
+    const loggedIn = this.state.currentUser.length
+    console.log(this.state.currentUser)
     return (
       <Switch>
         <Route exact path='/' render={() => <Home />} />
-        <Route exact path='/companies/' render={() => <CompanyList />} />
-        <Route
+        <PrivateRoute
+          exact
+          path='/companies/'
+          loggedIn={loggedIn}
+          render={() => <CompanyList />}
+        />
+        <PrivateRoute
           exact
           path='/companies/:name'
-          render={props => <Company {...props} />} />
-        <Route exact path='/jobs' render={() => <JobList />} />
-        <Route exact path='/profile' render={() => <Profile />} />
+          loggedIn={loggedIn}
+          render={props => <Company {...props} />}
+        />
+        <PrivateRoute
+          exact
+          path='/jobs'
+          loggedIn={loggedIn}
+          render={() => <JobList />}
+        />
+        <PrivateRoute
+          exact
+          path='/profile'
+          loggedIn={loggedIn}
+          render={rtProps => <Profile {...rtProps} currentUser={this.state.currentUser} />}
+        />
         <Route
           exact
           path='/login'
-          render={rtprops => <Login {...rtprops} loginToken={this.loginToken} createUser={this.createUser}/>} />
+          render={rtprops => (
+            <Login
+              {...rtprops}
+              loginToken={this.loginToken}
+              createUser={this.createUser}
+            />
+          )}
+        />
         <Redirect to='/login' />
       </Switch>
     );
