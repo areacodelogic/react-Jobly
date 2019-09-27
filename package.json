@@ -9,7 +9,6 @@
     "react-fontawesome": "^1.6.1",
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.2",
-    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

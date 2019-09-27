@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Search from "./Search";
 import CompanyCard from "./CompanyCard";
 import JoblyApi from "./JoblyApi";
-import uuid from "uuid/v4";
 
 class CompanyList extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class CompanyList extends Component {
       <div className='justify-content-center'>
         {this.state.companies.map(company => (
           <CompanyCard
-            key={uuid()}
+            key={company.handle}
             name={company.name}
             desc={company.description}
             logo={company.logo_url}

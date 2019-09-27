@@ -16,13 +16,23 @@ class Routes extends Component {
       token: ""
     };
     this.loginToken = this.loginToken.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   async loginToken(username, password) {
-    let data = { username, password }
-    let token = await JoblyApi.getLogin(data)
-    localStorage.setItem('token', token)
-    this.setState({ ...this.state, token: token })
+    let data = { username, password };
+    let token = await JoblyApi.getLogin(data);
+    localStorage.setItem('token', token);
+    this.props.toggleLogin(username);
+    this.setState({ currentUser: username, token });
+  }
+
+  async createUser(username, password, first_name, last_name, email ) {
+    let data = {username, password, first_name, last_name, email };
+    let token = await JoblyApi.createUser(data);
+    localStorage.setItem('token', token);
+    this.props.toggleLogin(username);
+    this.setState({ currentUser: username, token });
   }
 
   render() {
@@ -33,15 +43,13 @@ class Routes extends Component {
         <Route
           exact
           path='/companies/:name'
-          render={props => <Company {...props} />}
-        />
+          render={props => <Company {...props} />} />
         <Route exact path='/jobs' render={() => <JobList />} />
         <Route exact path='/profile' render={() => <Profile />} />
         <Route
           exact
           path='/login'
-          render={() => <Login loginToken={this.loginToken} />}
-        />
+          render={rtprops => <Login {...rtprops} loginToken={this.loginToken} createUser={this.createUser}/>} />
         <Redirect to='/login' />
       </Switch>
     );

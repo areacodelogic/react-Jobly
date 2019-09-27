@@ -6,10 +6,10 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      username: "",
       password: "",
-      firstname: "",
-      lastname: "",
+      first_name: "",
+      last_name: "",
       email: "",
       showSignup: false,
 
@@ -19,33 +19,33 @@ class Login extends Component {
     this.renderSignup = this.renderSignup.bind(this);
     this.showLogin = this.showLogin.bind(this);
     this.showSignup = this.showSignup.bind(this);
+
   }
 
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault();
-    this.props.loginToken(this.state.name, this.state.password);
-    this.setState({ ...this.state, name: "", password: "" });
+    if (this.state.showSignup){
+      const { username, password, first_name, last_name, email } = this.state;
+      await this.props.createUser(username, password, first_name, last_name, email);
+    }
+    else {
+      await this.props.loginToken(this.state.username, this.state.password);
+    }
+    this.props.history.push('/companies');
   }
 
   showLogin(){
-    console.log("enter")
     this.setState({ ...this.state, showSignup: false });
   };
 
   showSignup(evt){
-    console.log("clickkk")
     this.setState({ ...this.state, showSignup: true });
   }
-
-  // mouseLeave(){
-  //   console.log('leave')
-  //   this.setState({ ...this.state, isMouseInside: false });
-  // };
-
+  
   renderSignup() {
     return (
       <div>
@@ -53,30 +53,28 @@ class Login extends Component {
           <label htmlFor='firstname'>First Name</label>
           <input
             onChange={this.handleChange}
-            name='firstname'
-            placeholder='firstname'
+            name='first_name'
+            placeholder='First Name'
             type='text'
             id='firstname'
-            value={this.state.firstname}></input>
+            value={this.state.first_name}></input>
         </div>
         <div className='form-group'>
-          <label htmlFor='password'>Last Name</label>
-
+          <label htmlFor='last_name'>Last Name</label>
           <input
             onChange={this.handleChange}
-            name='lastname'
-            placeholder='lastname'
+            name='last_name'
+            placeholder='Last Name'
             type='text'
             id='lastname'
-            value={this.state.lastname}></input>
+            value={this.state.last_name}></input>
         </div>
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
-
           <input
             onChange={this.handleChange}
             name='email'
-            placeholder='email'
+            placeholder='Email'
             type='email'
             id='email'
             value={this.state.email}></input>
@@ -89,9 +87,7 @@ class Login extends Component {
     return (
       <div className='container col-sm-6 col-md-8 col-lg-6'>
         <div className='d-flex justify-content-end'>
-          <div
-            className='btn-group login-btn'>
-          
+          <div className='btn-group login-btn'>
               <div>
                 <input
                   className='btn btn-primary'
@@ -110,22 +106,21 @@ class Login extends Component {
           <div className='card-body'>
             <form className='form' onSubmit={this.handleSubmit}>
               <div className='form-group'>
-                <label htmlFor='name'>User Name</label>
+                <label htmlFor='username'>Username</label>
                 <input
                   onChange={this.handleChange}
-                  name='name'
-                  placeholder='name'
+                  name='username'
+                  placeholder='Username'
                   type='text'
-                  id='name'
-                  value={this.state.name}></input>
+                  id='username'
+                  value={this.state.username}></input>
               </div>
               <div className='form-group'>
-                <label htmlFor='passwprd'>Password</label>
-
+                <label htmlFor='password'>Password</label>
                 <input
                   onChange={this.handleChange}
                   name='password'
-                  placeholder='password'
+                  placeholder='Password'
                   type='text'
                   id='password'
                   value={this.state.password}></input>

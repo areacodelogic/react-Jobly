@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Search from "./Search";
 import JobCard from "./JobCard";
 import JoblyApi from "./JoblyApi";
-import uuid from "uuid/v4";
 
 class JobList extends Component {
   constructor(props) {
@@ -35,7 +34,7 @@ class JobList extends Component {
       <div className='justify-content-center'>
         {this.state.jobs.map(job => (
           <JobCard
-            key={uuid()}
+            key={job.id}
             title={job.title}
             salary={job.salary}
             equity={job.equity}
