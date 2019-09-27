@@ -12,6 +12,7 @@ class Login extends Component {
       lastname: "",
       email: "",
       showSignup: false,
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +27,7 @@ class Login extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.login(this.state.name, this.state.password);
+    this.props.loginToken(this.state.name, this.state.password);
     this.setState({ ...this.state, name: "", password: "" });
   }
 
@@ -109,7 +110,7 @@ class Login extends Component {
           <div className='card-body'>
             <form className='form' onSubmit={this.handleSubmit}>
               <div className='form-group'>
-                <label htmlFor='name'>Name</label>
+                <label htmlFor='name'>User Name</label>
                 <input
                   onChange={this.handleChange}
                   name='name'
